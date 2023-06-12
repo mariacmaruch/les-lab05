@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 class QueryRunner:
-    TOKEN = "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"
+    TOKEN = "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"
     NUMBER_OF_ATTEMPTS = 15
     NUMBER_ITERATION = 10
     GITHUB_API_ENDPOINT = "https://api.github.com/graphql"
@@ -79,7 +79,7 @@ class QueryRunner:
 
         results = pd.concat([results, pd.DataFrame.from_records(data_to_file)])
 
-        results.to_csv(csv_file_name, index=False, sep=';')
+        results.to_csv(csv_file_name, index=False, sep=',')
 
     def create_query_graphql(self, filter=False):
 
