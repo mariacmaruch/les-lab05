@@ -86,47 +86,168 @@ class QueryRunner:
         if not filter:
             query = """
                 query github {
-                    search(query: "stars:>100", type:REPOSITORY, first:10) {
-                        nodes {
-                            ... on Repository {
-                                id
-                                name
-                                nameWithOwner
-                                url
-                                createdAt
-                                isPrivate
-                                stargazers { totalCount }
-                                }
-                            }
-                        pageInfo {
-                                hasNextPage
-                                endCursor
+                  search(query: "stars:>100", type: REPOSITORY, first: 10) {
+                    nodes {
+                      ... on Repository {
+                        id
+                        name
+                        nameWithOwner
+                        isPrivate
+                        owner {
+                          login
+                          id
+                          avatarUrl
+                          url
+                          __typename
                         }
+                        url
+                        url
+                        description
+                        isFork
+                        createdAt
+                        updatedAt
+                        pushedAt
+                        sshUrl
+                        mirrorUrl
+                        homepageUrl
+                        projectsUrl
+                        openGraphImageUrl
+                        securityPolicyUrl
+                        stargazerCount
+                        watchers {
+                          totalCount
+                        }
+                        primaryLanguage {
+                          id
+                          name
+                        }
+                        hasIssuesEnabled
+                        hasProjectsEnabled
+                        hasWikiEnabled
+                        hasDiscussionsEnabled
+                        forkCount
+                        isArchived
+                        isDisabled
+                        issues {
+                          totalCount
+                        }
+                        licenseInfo {
+                          key
+                          name
+                          spdxId
+                          url
+                          id
+                        }
+                        forkingAllowed
+                        isTemplate
+                        webCommitSignoffRequired
+                        repositoryTopics(first: 20) {
+                          edges {
+                            node {
+                              topic {
+                                name
+                              }
+                            }
+                          }
+                        }
+                        visibility
+                        forks {
+                          totalCount
+                        }
+                        defaultBranchRef {
+                          name
+                        }
+                      }
                     }
+                    pageInfo {
+                      hasNextPage
+                      endCursor
+                    }
+                  }
                 }
             """ 
 
         else:
             query = """
             query github {
-                query github {
-                    search(query: "stars:>100 language:java", type:REPOSITORY, first:10) {
-                        nodes {
-                            ... on Repository {
-                                id
-                                name
-                                nameWithOwner
-                                url
-                                createdAt
-                                isPrivate
-                                stargazers { totalCount }
-                                }
-                            }
-                        pageInfo {
-                                hasNextPage
-                                endCursor
+                  search(query: "stars:>100 language:java", type: REPOSITORY, first: 10) {
+                    nodes {
+                      ... on Repository {
+                        id
+                        name
+                        nameWithOwner
+                        isPrivate
+                        owner {
+                          login
+                          id
+                          avatarUrl
+                          url
+                          __typename
                         }
+                        url
+                        url
+                        description
+                        isFork
+                        createdAt
+                        updatedAt
+                        pushedAt
+                        sshUrl
+                        mirrorUrl
+                        homepageUrl
+                        projectsUrl
+                        openGraphImageUrl
+                        securityPolicyUrl
+                        stargazerCount
+                        watchers {
+                          totalCount
+                        }
+                        primaryLanguage {
+                          id
+                          name
+                        }
+                        hasIssuesEnabled
+                        hasProjectsEnabled
+                        hasWikiEnabled
+                        hasDiscussionsEnabled
+                        forkCount
+                        isArchived
+                        isDisabled
+                        issues {
+                          totalCount
+                        }
+                        licenseInfo {
+                          key
+                          name
+                          spdxId
+                          url
+                          id
+                        }
+                        forkingAllowed
+                        isTemplate
+                        webCommitSignoffRequired
+                        repositoryTopics(first: 20) {
+                          edges {
+                            node {
+                              topic {
+                                name
+                              }
+                            }
+                          }
+                        }
+                        visibility
+                        forks {
+                          totalCount
+                        }
+                        defaultBranchRef {
+                          name
+                        }
+                      }
                     }
+                    pageInfo {
+                      hasNextPage
+                      endCursor
+                    }
+                  }
                 }
             """
         return query
